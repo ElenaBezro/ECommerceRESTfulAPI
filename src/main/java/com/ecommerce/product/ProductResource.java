@@ -15,10 +15,9 @@ public class ProductResource {
         return productDao.getAllProducts();
     }
 
-    @Path("/page={page}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> getProducts(@PathParam("page") int page) {
+    public List<Product> getProducts(@QueryParam("page") @DefaultValue("1") int page) {
         return productDao.getProducts(page);
     }
 
@@ -43,17 +42,15 @@ public class ProductResource {
         return productDao.getProduct(id);
     }
 
-    @Path("/filter={category}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> getProductsByCategory(@PathParam("category") String category) {
+    public List<Product> getProductsByCategory(@QueryParam("category")  String category) {
         return productDao.getProductsByCategory(category);
     }
 
-    @Path("/minPrice={minPrice}&&maxPrice={maxPrice}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> getProductsInPriceRange(@PathParam("minPrice") Double minPrice, @PathParam("maxPrice") Double maxPrice) {
+    public List<Product> getProductsInPriceRange(@QueryParam("minPrice") Double minPrice, @QueryParam("maxPrice") Double maxPrice) {
         return productDao.getProductsInPriceRange(minPrice, maxPrice);
     }
 }
