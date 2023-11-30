@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class ProductDao {
-    private List<Product> products = new ArrayList<>();
+    private static List<Product> products = new ArrayList<>();
     private static final int PRODUCTS_PER_PAGE = 5;
 
     public List<Product> getAllProducts() {
@@ -18,7 +18,7 @@ public class ProductDao {
         System.out.println("getProducts with pagination");
 
         return IntStream.range(0, products.size())
-                .filter(i -> i >= page * PRODUCTS_PER_PAGE && i < page * PRODUCTS_PER_PAGE + PRODUCTS_PER_PAGE - 1)
+                .filter(i -> i >= (page - 1) * PRODUCTS_PER_PAGE && i < page * PRODUCTS_PER_PAGE)
                 .mapToObj(i -> products.get(i))
                 .toList();
     }
@@ -55,7 +55,7 @@ public class ProductDao {
 
     public List<Product> getProductsInPriceRange(Double minPrice, Double maxPrice) {
         return products.stream()
-                .filter(product -> product.getPrice() <= minPrice && product.getPrice() >= maxPrice)
+                .filter(product -> product.getPrice() >= minPrice && product.getPrice() <= maxPrice)
                 .toList();
     }
 }
