@@ -7,7 +7,11 @@ import java.util.List;
 
 @Path("/product")
 public class ProductResource {
-    ProductDao productDao = new ProductDao();
+    private static ProductDao productDao = new ProductDao();
+
+    public ProductResource() {
+        System.out.println("ProductResource constructor called");
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

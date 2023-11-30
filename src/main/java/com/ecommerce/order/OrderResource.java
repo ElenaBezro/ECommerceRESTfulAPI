@@ -1,10 +1,11 @@
 package com.ecommerce.order;
 
 
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import com.ecommerce.product.Product;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+
+import java.util.List;
 
 @Path("/order")
 public class OrderResource {
@@ -13,5 +14,11 @@ public class OrderResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void addOrder(Order order) {
         orderDao.addOrder(order);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Order> getAllOrders() {
+        return orderDao.getAllOrders();
     }
 }

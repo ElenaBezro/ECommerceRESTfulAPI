@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class ProductDao {
-    private List<Product> products = new ArrayList<>();
+    private static List<Product> products = new ArrayList<>();
     private static final int PRODUCTS_PER_PAGE = 5;
 
     public List<Product> getAllProducts() {
